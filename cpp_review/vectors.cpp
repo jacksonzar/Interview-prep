@@ -159,3 +159,118 @@ int main() {
 
     return 0;
 }
+
+/*
+=========================================================
+                std::vector Cheat Sheet
+=========================================================
+
+Declaration
+-----------
+vector<int> nums;
+vector<int> nums = {1,2,3};
+vector<int> nums(5);        // 5 zeros
+vector<int> nums(5, 10);    // 5 tens
+
+---------------------------------------------------------
+Element Access
+---------------------------------------------------------
+
+nums[i]          // O(1)
+nums.at(i)       // O(1), bounds checked
+nums.front()     // First element
+nums.back()      // Last element
+
+---------------------------------------------------------
+Size / Capacity
+---------------------------------------------------------
+
+nums.size()      // Number of elements
+nums.empty()     // true if empty
+nums.capacity()  // Allocated capacity
+nums.clear()     // Remove all elements
+
+---------------------------------------------------------
+Adding Elements
+---------------------------------------------------------
+
+nums.push_back(x);      // Add to end
+nums.emplace_back(x);   // Construct at end (slightly faster for objects)
+
+---------------------------------------------------------
+Removing Elements
+---------------------------------------------------------
+
+nums.pop_back();                    // Remove last
+nums.erase(nums.begin()+i);         // Remove one element
+nums.erase(nums.begin(), nums.end());// Remove range
+nums.clear();                       // Remove all
+
+---------------------------------------------------------
+Insert
+---------------------------------------------------------
+
+nums.insert(nums.begin()+i, value);
+
+---------------------------------------------------------
+Iterators
+---------------------------------------------------------
+
+nums.begin()
+nums.end()
+
+---------------------------------------------------------
+Useful STL Algorithms
+---------------------------------------------------------
+
+sort(nums.begin(), nums.end());
+
+sort(nums.begin(), nums.end(), greater<int>());
+
+reverse(nums.begin(), nums.end());
+
+max_element(nums.begin(), nums.end());
+
+min_element(nums.begin(), nums.end());
+
+accumulate(nums.begin(), nums.end(), 0);
+
+find(nums.begin(), nums.end(), value);
+
+count(nums.begin(), nums.end(), value);
+
+---------------------------------------------------------
+Looping
+---------------------------------------------------------
+
+for (int num : nums)
+
+for (const int& num : nums)
+
+for (int i = 0; i < nums.size(); i++)
+
+---------------------------------------------------------
+Passing to Functions
+---------------------------------------------------------
+
+void func(vector<int>& nums)        // Modify vector
+
+void func(const vector<int>& nums)  // Read only (preferred)
+
+void func(vector<int> nums)         // Makes a copy
+
+---------------------------------------------------------
+Complexities
+---------------------------------------------------------
+
+Index               O(1)
+push_back           O(1) amortized
+pop_back            O(1)
+size                O(1)
+front/back          O(1)
+insert              O(n)
+erase               O(n)
+find                O(n)
+sort                O(n log n)
+
+=========================================================

@@ -59,6 +59,54 @@ void removeEven(vector<int>& nums){
     }
 }
 
+int secondLargest(vector<int>& nums){
+
+    if (nums.size() < 2) return -1;
+    int largest = nums[0];
+    bool secondLargebool = false;
+    int secondLarge;
+
+    if (largest != nums[1]){
+        if (nums[1] > largest){
+            secondLarge = largest;
+            largest = nums[1];
+        } else {
+        secondLarge = nums[1];
+        }
+
+        secondLargebool = true;
+    }
+
+    for (int i = 2; i < nums.size(); i++){
+
+        if (secondLargebool){
+            if (nums[i] > largest){
+                secondLarge = largest;
+                largest = nums[i];                
+            }
+            else if (nums[i] > secondLarge && nums[i] != largest){
+                secondLarge = nums[i];
+            }
+            
+        } else {
+            if (nums[i] != largest){
+                if (nums[i] > largest){
+                    secondLarge = largest;
+                    largest = nums[i];
+                } else {
+                secondLarge = nums[i];
+                }
+                secondLargebool = true;
+            }
+        }
+
+    }
+
+    if (!secondLargebool) return -1;
+
+    return secondLarge;
+}
+
 int main() {
 
     // vector<int> v = {1, 2, 3, 10, 8, 5};
@@ -90,17 +138,24 @@ int main() {
 
     //+--------------------+ reverse
 
-    vector<int> v = {1, 2, 3, 4, 5};
+    // vector<int> v = {1, 2, 3, 4, 5};
 
-    removeEven(v);
+    // removeEven(v);
 
-    for (int num : v)
-    {
-        cout << num << " ";
-    }
+    // for (int num : v)
+    // {
+    //     cout << num << " ";
+    // }
 
-    cout << '\n';
+    // cout << '\n';
+    
+    //+---------------------------+ secondlarge 
 
+    vector<int> v = {1, 2, 3, 10, 8, 5};
+
+    int result = secondLargest(v);
+
+    cout << "SecondLarge : " << result << '\n';
 
     return 0;
 }
